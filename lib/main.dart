@@ -44,7 +44,7 @@ class _MyApp extends State<MyApp>{
                     test = 'flutter';
                     _color = Colors.amber;
                   });
-                } else {
+                } else { //
                   setState(() {
                     test = 'flutter';
                     _color = Colors.blue;
