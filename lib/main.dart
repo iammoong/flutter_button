@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
+
   runApp(MyApp());
 }
 //StatefulWidget은 createState를 재정의해서 호출한다.
@@ -14,9 +15,11 @@ class MyApp extends StatefulWidget {
 
 // 언더스코어(_)의 뜻 : 자바의 프라이빗과 동일
 class _MyApp extends State<MyApp>{
+  var switchValue = false;
+  String test = 'hello'; // 버튼에 들어갈 텍스트 입력
+  Color _color = Colors.blue;
   @override
   Widget build(BuildContext context) {
-    var switchValue = false;
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -26,17 +29,32 @@ class _MyApp extends State<MyApp>{
         darkTheme: ThemeData.light(),
         home: Scaffold(
           body: Center(
-            child: Switch(
-                value: switchValue,
-                onChanged: (value) {
-                  // 플러터에서 변숫값이 바뀌면 이 사실을 앱에 알려 화면을 갱신해 주는 함수
-                  setState(() {
-                    print(value);
-                    switchValue = value;
+            child: ElevatedButton(
+              child : Text('$test',
+                style: TextStyle(
+                  color: Colors.white // 글자색을 흰색으로 만들어준다
+                )
+              ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(_color),
+              ),
+              onPressed: (){
+                if(_color == Colors.blue){
+                  setState(() { // setState() 함수를 적용
+                    test = 'flutter';
+                    _color = Colors.amber;
                   });
-                }),
+                } else {
+                  setState(() {
+                    test = 'flutter';
+                    _color = Colors.blue;
+                  });
+                }
+              },
+            ),
           ),
-        ));
+        ),
+    );
   }
 }
 
